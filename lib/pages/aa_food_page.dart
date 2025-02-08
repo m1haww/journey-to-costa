@@ -132,7 +132,7 @@ class _AaFoodPageState extends State<AaFoodPage> {
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 1, // Display in grid format
         mainAxisSpacing: 50,
-        childAspectRatio: 1.1,
+        childAspectRatio: 1.2,
       ),
       itemCount: costarestaurants.length,
       itemBuilder: (context, index) {

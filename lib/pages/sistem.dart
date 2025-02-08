@@ -38,16 +38,8 @@ class CostaRestaurants {
     required this.descriptionfull,
     required this.time,
     required this.description,
-    required List<Food> foodList,
-  }) : menu = _initializeMenu(foodList);
-}
-
-// Helper function to initialize the menu safely
-List<Food> _initializeMenu(List<Food> foodList) {
-  if (foodList.length >= 12) {
-    return foodList.sublist(12, foodList.length); // Safe sublist
-  }
-  return []; // Return an empty list if there aren't enough items
+    required this.menu,
+  });
 }
 
 class Food {

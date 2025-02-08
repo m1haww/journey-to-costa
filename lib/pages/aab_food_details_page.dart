@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:journey_to_costa/pages/a_rate_page.dart';
+import 'package:journey_to_costa/pages/aaa_food_details_page.dart';
 import 'package:journey_to_costa/pages/app_provider.dart';
 import 'package:journey_to_costa/pages/basement.dart';
 import 'package:journey_to_costa/pages/basements_text.dart';
@@ -116,9 +118,10 @@ class _AabFoodDetailsPageState extends State<AabFoodDetailsPage> {
                         color: Colors.black),
                   ),
                   buildheight(context, 0.02),
-                  buildTextdetails(context, "Some Dishes"),
+                  buildTextdetails(context, "Some dishes"),
                   buildheight(context, 0.02),
                   buildScrollRight(),
+                  buildheight(context, 0.02),
                 ],
               ),
             ),
@@ -129,42 +132,123 @@ class _AabFoodDetailsPageState extends State<AabFoodDetailsPage> {
   }
 
   Widget buildScrollRight() {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
+
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
-        children: widget.restaurants.foodList.map((foodItem) {
-          return Container(
-            width: 100,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Image.asset(foodItem.image),
-                buildheight(context, 0.01),
-                Text(
-                  foodItem.title,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
+        children: widget.restaurants.menu.map((foodItem) {
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  CupertinoPageRoute(
+                    builder: (context) => AaaFoodDetailsPage(
+                      foodList: widget.restaurants.menu,
+                      initialIndex: widget.restaurants.menu
+                          .indexOf(foodItem), // Pass the selected index
+                    ),
+                  ));
+            },
+            child: Container(
+              width: width * 0.45,
+              margin: const EdgeInsets.symmetric(horizontal: 10),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: const [
+                  BoxShadow(
+                    color: Colors.black12,
+                    blurRadius: 8,
+                    spreadRadius: 2,
                   ),
-                ),
-                buildheight(context, 0.01),
-                Text(
-                  foodItem.description,
-                  style: const TextStyle(
-                    fontSize: 12,
-                    color: Colors.grey,
+                ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ClipRRect(
+                    borderRadius:
+                        const BorderRadius.vertical(top: Radius.circular(20)),
+                    child: Image.asset(
+                      foodItem.image,
+                      width: double.infinity,
+                      height: height * 0.2,
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                ),
-                buildheight(context, 0.01),
-                Text(
-                  foodItem.price,
-                  style: const TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.bold,
+                  Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Price with discount
+                        Row(
+                          children: [
+                            Text(
+                              foodItem.price,
+                              style: const TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w700,
+                                  fontFamily: "Dm"),
+                            ),
+                          ],
+                        ),
+                        buildheight(context, 0.005),
+                        // Title
+                        Text(
+                          foodItem.title,
+                          style: const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                              fontFamily: "Dm"),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        buildheight(context, 0.005),
+                        // Description
+                        Text(
+                          foodItem.kcal,
+                          style: const TextStyle(
+                              fontFamily: "Dm",
+                              fontWeight: FontWeight.w400,
+                              fontSize: 14,
+                              color:
+                                  Color(0x80303030) // 50% opacity (80 in hex)
+
+                              ),
+                        ),
+                        buildheight(context, 0.01),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                CupertinoPageRoute(
+                                  builder: (context) =>
+                                      ARatePage(food: foodItem),
+                                ));
+                          },
+                          child: Container(
+                            color: Color(0xffF6F6F6),
+                            child: const Center(
+                              child: Text(
+                                "Rate",
+                                style: TextStyle(
+                                  fontFamily: "Sf",
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color(0xffDCA23D),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                buildheight(context, 0.01),
-              ],
+                ],
+              ),
             ),
           );
         }).toList(),

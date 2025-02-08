@@ -88,9 +88,9 @@ flutter:
         - asset: fonts/SFPRODISPLAYREGULAR.OTF
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
+    - family: Dm
+      fonts:
+        - asset: fonts/DMSans-VariableFont_opsz,wght.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #

@@ -64,18 +64,20 @@ Widget buildTextForINPUT(BuildContext context, String text) {
 }
 
 Widget buildTextForFinish(BuildContext context, String text) {
-  return Row(
-    children: [
-      Text(
-        textAlign: TextAlign.center,
-        text,
-        style: const TextStyle(
-            fontFamily: "Sf",
-            fontWeight: FontWeight.w700,
-            fontSize: 34,
-            color: Colors.black),
-      ),
-    ],
+  return Center(
+    child: Row(
+      children: [
+        Text(
+          textAlign: TextAlign.center,
+          text,
+          style: const TextStyle(
+              fontFamily: "Sf",
+              fontWeight: FontWeight.w700,
+              fontSize: 34,
+              color: Colors.black),
+        ),
+      ],
+    ),
   );
 }
 

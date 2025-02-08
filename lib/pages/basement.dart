@@ -330,3 +330,56 @@ Widget buildContainerWorkTime(BuildContext context, CostaRestaurants event) {
     ),
   );
 }
+
+Widget buildContainerRate(BuildContext context, Food food) {
+  final height = MediaQuery.of(context).size.height;
+  final width = MediaQuery.of(context).size.width;
+
+  return Container(
+    width: double.infinity,
+    height: height * 0.26,
+    decoration: BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(12),
+      border: Border.all(
+        color: const Color(0xffECECEC), // Outline color
+        width: 1, // Outline width
+      ),
+    ),
+    child: Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            food.title,
+            style: TextStyle(
+                fontFamily: "Sf",
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                color: Colors.black),
+          ),
+          buildheight(context, 0.02),
+          Text(
+            food.price,
+            style: TextStyle(
+                fontFamily: "Dm",
+                fontSize: 20,
+                fontWeight: FontWeight.w700,
+                color: Color(0xff303030)),
+          ),
+          buildheight(context, 0.02),
+          Text(
+            food.kcal,
+            style: TextStyle(
+                fontFamily: "Dm",
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Color(0xff80303030)),
+          ),
+          buildheight(context, 0.02),
+        ],
+      ),
+    ),
+  );
+}
