@@ -93,3 +93,33 @@ Widget buildTextUNderFInish(BuildContext context, String text) {
     ],
   );
 }
+
+Widget buildTextdetails(BuildContext context, String text) {
+  return Row(
+    children: [
+      Text(
+        text,
+        style: const TextStyle(
+            fontFamily: "Sf",
+            fontWeight: FontWeight.w700,
+            fontSize: 18,
+            color: Colors.black),
+      ),
+    ],
+  );
+}
+
+Widget buildTextWorkTime(BuildContext context, String text) {
+  return Row(
+    children: [
+      Text(
+        text,
+        style: const TextStyle(
+            fontFamily: "Sf",
+            fontWeight: FontWeight.w700,
+            fontSize: 16,
+            color: Colors.black),
+      ),
+    ],
+  );
+}

@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:journey_to_costa/pages/sistem.dart';
 
 Widget buildContainerPlus(
     BuildContext context, String text, Color colortext, Color colorbackground) {
@@ -262,6 +263,66 @@ Widget buildContainerSettings(BuildContext context, String text, String image) {
               fontWeight: FontWeight.w700,
               fontSize: 16,
               color: Colors.black,
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+Widget buildContainerWorkTime(BuildContext context, CostaRestaurants event) {
+  final height = MediaQuery.of(context).size.height;
+  final width = MediaQuery.of(context).size.width;
+
+  return Container(
+    width: width * 0.9,
+    height: height * 0.06,
+    decoration: BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(12),
+      border: Border.all(
+        color: const Color(0xffECECEC), // Outline color
+        width: 1, // Outline width
+      ),
+    ),
+    child: Padding(
+      padding: const EdgeInsets.only(left: 15.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Text(
+            "Work time",
+            style: const TextStyle(
+              fontFamily: "Sf",
+              fontWeight: FontWeight.w700,
+              fontSize: 16,
+              color: Colors.black,
+            ),
+          ),
+          buildwidth(context, 0.09),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(right: 15.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Image(
+                    image: AssetImage("images/cronometru.png"),
+                  ),
+                  buildwidth(context, 0.02),
+                  Text(
+                    event.time,
+                    style: const TextStyle(
+                      fontFamily: "Sf",
+                      fontWeight: FontWeight.w400,
+                      fontSize: 14,
+                      color: Color(0xff303030),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ],

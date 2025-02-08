@@ -139,9 +139,9 @@ class AppProvider extends ChangeNotifier {
         image: "images/first.png",
         title: "El Motel (Empordà Hotel restaurant)",
         descriptionfull:
-            "El Motel, nestled in the Empordà Hotel in Costa Brava, offers a delightful culinary journey...",
+            "El Motel, nestled in the Empordà Hotel in Costa Brava, offers a delightful culinary journey. Savor exquisite Mediterranean dishes crafted with fresh local ingredients, all in a charming and inviting atmosphere. Perfect for food lovers seeking a unique dining experience.",
         time: "08:00 AM - 11:00 AM",
-        description: "El Motel, nestled in the Empordà",
+        description: "El Motel, nestled in the Empordà ... ",
         foodList: [
           Food(
             image: 'images/11.png',
@@ -170,7 +170,7 @@ class AppProvider extends ChangeNotifier {
         image: "images/second.png",
         title: "Sa Punta Hotel and Restaurant",
         descriptionfull:
-            "Sa Punta Hotel and Restaurant in Costa Brava offers a delightful culinary experience...",
+            "Sa Punta Hotel and Restaurant in Costa Brava offers a delightful culinary experience with breathtaking sea views. Enjoy exquisite Mediterranean dishes crafted from fresh, local ingredients in a serene and elegant setting.",
         time: "10:00 AM - 07:00 AM",
         description: "Sa Punta Hotel and Restaurant in Costa Brava",
         foodList: [
@@ -200,7 +200,7 @@ class AppProvider extends ChangeNotifier {
         image: "images/Third.png",
         title: "Compartir Restaurant",
         descriptionfull:
-            "Compartir Restaurant in Costa Brava offers a delightful culinary experience...",
+            "Compartir Restaurant in Costa Brava offers a delightful culinary experience with its innovative Mediterranean dishes. Enjoy a cozy atmosphere and share plates designed to bring people together, all while savoring the stunning coastal views.",
         time: "09:00 AM - 08:00 PM",
         description: "Compartir Restaurant in Costa Brava offers",
         foodList: [
@@ -230,9 +230,9 @@ class AppProvider extends ChangeNotifier {
         image: "images/Fourth.png",
         title: "Els Brancs Restaurant",
         descriptionfull:
-            "Els Brancs Restaurant in Costa Brava offers a delightful culinary experience...",
+            "Els Brancs Restaurant in Costa Brava offers a delightful culinary experience with breathtaking sea views. Enjoy exquisite dishes crafted with local ingredients, perfect for a romantic dinner or a special celebration.",
         time: "11:00 AM - 04:00 PM",
-        description: "Els Brancs Restaurant in Costa Brava offers",
+        description: "Els Brancs Restaurant in Costa Brava offers ...",
         foodList: [
           Food(
             image: 'images/20.png',

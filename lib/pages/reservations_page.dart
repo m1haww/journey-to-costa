@@ -6,6 +6,7 @@ import 'package:journey_to_costa/pages/basements_text.dart';
 import 'package:journey_to_costa/pages/first_detail_page.dart';
 import 'package:journey_to_costa/pages/grid_events_list.dart';
 import 'package:provider/provider.dart';
+import 'package:toggle_switch/toggle_switch.dart';
 
 class ReservationsPage extends StatefulWidget {
   const ReservationsPage({super.key});
@@ -33,20 +34,23 @@ class _ReservationsPageState extends State<ReservationsPage> {
           // Toggle Buttons
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _buildToggleButton("Active", isActiveSelected, () {
-                  setState(() {
-                    isActiveSelected = true;
-                  });
-                }),
-                _buildToggleButton("Archived", !isActiveSelected, () {
-                  setState(() {
-                    isActiveSelected = false;
-                  });
-                }),
+            child: ToggleSwitch(
+              minWidth: 170.0,
+              cornerRadius: 12.0,
+              activeBgColors: [
+                [Color(0xff999999)],
+                [Color(0xff999999)]
               ],
+              inactiveBgColor: Color(0xffECECEC),
+              initialLabelIndex: isActiveSelected ? 0 : 1,
+              totalSwitches: 2,
+              labels: ['Active', 'Archived'],
+              radiusStyle: true,
+              onToggle: (index) {
+                setState(() {
+                  isActiveSelected = index == 0;
+                });
+              },
             ),
           ),
 
@@ -65,29 +69,46 @@ class _ReservationsPageState extends State<ReservationsPage> {
     );
   }
 
-  Widget _buildToggleButton(String text, bool isSelected, VoidCallback onTap) {
+  Widget _buildToggleSwitch(bool isSelected, ValueChanged<int> onToggle) {
     final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
 
     return GestureDetector(
-      onTap: onTap,
+      onTap: () {
+        onToggle(isSelected ? 1 : 0);
+      },
       child: Container(
-        height: height * 0.06,
-        width: width * 0.45,
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        width: 90,
+        padding: const EdgeInsets.all(5),
         decoration: BoxDecoration(
-          color: isSelected ? const Color(0xff999999) : Colors.transparent,
+          color: isSelected ? Colors.green[800] : Colors.red[800],
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: const Color(0xff999999)),
         ),
-        child: Center(
-          child: Text(
-            text,
-            style: TextStyle(
-                color: isSelected ? Colors.white : Colors.black,
-                fontWeight: FontWeight.w500,
-                fontSize: 13),
-          ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: Center(
+                child: Text(
+                  'True',
+                  style: TextStyle(
+                    color: isSelected ? Colors.white : Colors.grey,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              child: Center(
+                child: Text(
+                  'False',
+                  style: TextStyle(
+                    color: isSelected ? Colors.grey : Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
