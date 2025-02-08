@@ -31,53 +31,42 @@ class _AaFoodPageState extends State<AaFoodPage> {
       body: Column(
         children: [
           // Toggle Buttons
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: ToggleSwitch(
-              minWidth: 170.0,
-              cornerRadius: 12.0,
-              activeBgColors: const [
-                [Color(0xff999999)],
-                [Color(0xff999999)]
-              ],
-              inactiveBgColor: const Color(0xffECECEC),
-              initialLabelIndex: isAllSelected ? 0 : 1,
-              totalSwitches: 2,
-              labels: const ['All', 'Favourites'],
-              radiusStyle: true,
-              onToggle: (index) {
-                setState(() {
-                  isAllSelected = index == 0;
-                });
-              },
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              child: ToggleSwitch(
+                minWidth: 170.0,
+                cornerRadius: 12.0,
+                activeBgColors: const [
+                  [Color(0xff999999)],
+                  [Color(0xff999999)]
+                ],
+                inactiveBgColor: const Color(0xffECECEC),
+                initialLabelIndex: isAllSelected ? 0 : 1,
+                totalSwitches: 2,
+                labels: const ['All', 'Favourites'],
+                radiusStyle: true,
+                onToggle: (index) {
+                  setState(() {
+                    isAllSelected = index == 0;
+                  });
+                },
+              ),
             ),
           ),
 
           Expanded(
             child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: isAllSelected
-                    ? _buildEventGrid(provider.costarestaurants)
-                    : null),
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: isAllSelected
+                  ? _buildEventGrid(provider.costarestaurants)
+                  : _buildEventGrid(provider.costarestaurants
+                      .where((item) => item.isfavorite)
+                      .toList()),
+            ),
           ),
         ],
       ),
-      floatingActionButton: isAllSelected
-          ? null
-          : Padding(
-              padding: const EdgeInsets.only(left: 20.0),
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          CupertinoPageRoute(
-                              builder: (context) => const AddEventsPage()));
-                    },
-                    child: buildContainer(context)),
-              ),
-            ),
     );
   }
 

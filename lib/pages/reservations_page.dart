@@ -19,7 +19,6 @@ class _ReservationsPageState extends State<ReservationsPage> {
   List<GridEventsList> addedEvents = [];
 
   bool isActiveSelected = true;
-
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<AppProvider>(context, listen: false);
@@ -31,118 +30,17 @@ class _ReservationsPageState extends State<ReservationsPage> {
       ),
       body: Column(
         children: [
-          // Toggle Buttons
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: ToggleSwitch(
-              minWidth: 170.0,
-              cornerRadius: 12.0,
-              activeBgColors: const [
-                [Color(0xff999999)],
-                [Color(0xff999999)]
-              ],
-              inactiveBgColor: const Color(0xffECECEC),
-              initialLabelIndex: isActiveSelected ? 0 : 1,
-              totalSwitches: 2,
-              labels: const ['Active', 'Archived'],
-              radiusStyle: true,
-              onToggle: (index) {
-                setState(() {
-                  isActiveSelected = index == 0;
-                });
-              },
-            ),
-          ),
-
-          // Content Area
+          // Content Area (without toggle switch)
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: isActiveSelected
-                  ? _buildEventGrid(
-                      provider.eventsList.where((e) => e.issaved).toList())
-                  : _buildAddedEvents(),
+              child: _buildEventGrid(
+                  provider.eventsList.where((e) => e.issaved).toList()),
             ),
           ),
         ],
       ),
     );
-  }
-
-  Widget _buildToggleSwitch(bool isSelected, ValueChanged<int> onToggle) {
-    final width = MediaQuery.of(context).size.width;
-
-    return GestureDetector(
-      onTap: () {
-        onToggle(isSelected ? 1 : 0);
-      },
-      child: Container(
-        width: 90,
-        padding: const EdgeInsets.all(5),
-        decoration: BoxDecoration(
-          color: isSelected ? Colors.green[800] : Colors.red[800],
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Expanded(
-              child: Center(
-                child: Text(
-                  'True',
-                  style: TextStyle(
-                    color: isSelected ? Colors.white : Colors.grey,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-            Expanded(
-              child: Center(
-                child: Text(
-                  'False',
-                  style: TextStyle(
-                    color: isSelected ? Colors.grey : Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildAddedEvents() {
-    if (addedEvents.isEmpty) {
-      return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Image(
-              image: AssetImage("images/anyy.png"),
-            ),
-            buildheight(context, 0.02),
-            const Align(
-              alignment: Alignment.center,
-              child: Text(
-                textAlign: TextAlign.center,
-                'There aren’t any events you add yet,\n you can do it now',
-                style: TextStyle(
-                  fontFamily: "Sf",
-                  fontWeight: FontWeight.w400,
-                  fontSize: 13,
-                  color: Colors.black,
-                ),
-              ),
-            )
-          ],
-        ),
-      );
-    } else {
-      return _buildEventGrid(addedEvents);
-    }
   }
 
   Widget _buildEventGrid(List<GridEventsList> eventsList) {
