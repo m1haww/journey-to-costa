@@ -28,7 +28,7 @@ class _ARatePageState extends State<ARatePage> {
             onTap: () {
               Navigator.pop(context);
             },
-            child: Icon(Icons.arrow_back)),
+            child: const Icon(Icons.arrow_back)),
         centerTitle: false,
         title: buildTextForAppbar(context, "Rate the dish"),
       ),
@@ -46,7 +46,8 @@ class _ARatePageState extends State<ARatePage> {
             buildheight(context, 0.02),
             buildTextdetails(context, "Comment"),
             buildheight(context, 0.02),
-            buildInputBig(context, "Task name", Colors.black, Color(0xffF6F6F6),
+            buildInputBig(
+                context, "Task name", Colors.black, const Color(0xffF6F6F6),
                 controller: _comment),
             buildheight(context, 0.02),
             buildTextdetails(context, "Grade"),
@@ -67,20 +68,20 @@ class _ARatePageState extends State<ARatePage> {
                       Icons.star,
                       size: 50,
                       color: index < selectedStars
-                          ? Color(0xffDCA23D)
+                          ? const Color(0xffDCA23D)
                           : Colors.grey,
                     ),
                   ),
                 ),
               ),
             ),
-            Spacer(),
+            const Spacer(),
             GestureDetector(
                 onTap: () {
                   Navigator.push(
                       context,
                       CupertinoPageRoute(
-                        builder: (context) => AaRateSuccesfulPage(),
+                        builder: (context) => const AaRateSuccesfulPage(),
                       ));
                 },
                 child: buildSaveButton(context, "Save"))

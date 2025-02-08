@@ -37,14 +37,14 @@ class _ReservationsPageState extends State<ReservationsPage> {
             child: ToggleSwitch(
               minWidth: 170.0,
               cornerRadius: 12.0,
-              activeBgColors: [
+              activeBgColors: const [
                 [Color(0xff999999)],
                 [Color(0xff999999)]
               ],
-              inactiveBgColor: Color(0xffECECEC),
+              inactiveBgColor: const Color(0xffECECEC),
               initialLabelIndex: isActiveSelected ? 0 : 1,
               totalSwitches: 2,
-              labels: ['Active', 'Archived'],
+              labels: const ['Active', 'Archived'],
               radiusStyle: true,
               onToggle: (index) {
                 setState(() {

@@ -253,7 +253,7 @@ Widget buildContainerSettings(BuildContext context, String text, String image) {
         children: [
           Image(
             image: AssetImage(image),
-            color: Color(0xffDCA23D),
+            color: const Color(0xffDCA23D),
           ),
           buildwidth(context, 0.03),
           Text(
@@ -291,9 +291,9 @@ Widget buildContainerWorkTime(BuildContext context, CostaRestaurants event) {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Text(
+          const Text(
             "Work time",
-            style: const TextStyle(
+            style: TextStyle(
               fontFamily: "Sf",
               fontWeight: FontWeight.w700,
               fontSize: 16,
@@ -353,7 +353,7 @@ Widget buildContainerRate(BuildContext context, Food food) {
         children: [
           Text(
             food.title,
-            style: TextStyle(
+            style: const TextStyle(
                 fontFamily: "Sf",
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
@@ -362,7 +362,7 @@ Widget buildContainerRate(BuildContext context, Food food) {
           buildheight(context, 0.02),
           Text(
             food.price,
-            style: TextStyle(
+            style: const TextStyle(
                 fontFamily: "Dm",
                 fontSize: 20,
                 fontWeight: FontWeight.w700,
@@ -371,7 +371,7 @@ Widget buildContainerRate(BuildContext context, Food food) {
           buildheight(context, 0.02),
           Text(
             food.kcal,
-            style: TextStyle(
+            style: const TextStyle(
                 fontFamily: "Dm",
                 fontSize: 14,
                 fontWeight: FontWeight.w400,

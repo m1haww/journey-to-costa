@@ -18,9 +18,9 @@ class _NavigationPageState extends State<NavigationPage> {
   final List<Widget> _pages = [
     const EventsPage(), // Events Page
     const ReservationsPage(), // Reservations Page
-    AaFoodPage(), // Food Page
+    const AaFoodPage(), // Food Page
     const SightsPage(), // Sights Page
-    SettingsPage(), // Settings Page
+    const SettingsPage(), // Settings Page
   ];
 
   @override

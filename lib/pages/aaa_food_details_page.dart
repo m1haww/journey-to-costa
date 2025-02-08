@@ -129,7 +129,8 @@ class _AaaFoodDetailsPageState extends State<AaaFoodDetailsPage> {
                               Navigator.push(
                                   context,
                                   CupertinoPageRoute(
-                                    builder: (context) => AaRateSuccesfulPage(),
+                                    builder: (context) =>
+                                        const AaRateSuccesfulPage(),
                                   ));
                             },
                             child: buildSaveButton(context, "Rate")),
@@ -167,110 +168,139 @@ class _AaaFoodDetailsPageState extends State<AaaFoodDetailsPage> {
                                               widget.foodList
                                                   .length), // Cycle through foods
                                       child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
                                         children: [
-                                          ClipRRect(
-                                            borderRadius:
-                                                const BorderRadius.vertical(
-                                                    top: Radius.circular(20)),
-                                            child: Image.asset(
-                                              widget
-                                                  .foodList[(currentIndex + i) %
-                                                      widget.foodList.length]
-                                                  .image,
-                                              width: double.infinity,
-                                              height: height * 0.2,
-                                              fit: BoxFit.cover,
-                                            ),
-                                          ),
                                           Padding(
-                                            padding: const EdgeInsets.all(10.0),
+                                            padding: const EdgeInsets.all(16.0),
                                             child: Column(
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                Row(
-                                                  children: [
-                                                    Text(
-                                                      widget
-                                                          .foodList[
-                                                              (currentIndex +
-                                                                      i) %
-                                                                  widget
-                                                                      .foodList
-                                                                      .length]
-                                                          .price,
-                                                      style: const TextStyle(
-                                                          fontSize: 20,
-                                                          fontWeight:
-                                                              FontWeight.w700,
-                                                          fontFamily: "Dm"),
-                                                    ),
-                                                  ],
+                                                ClipRRect(
+                                                  borderRadius:
+                                                      const BorderRadius
+                                                          .vertical(
+                                                          top: Radius.circular(
+                                                              20)),
+                                                  child: Image.asset(
+                                                    widget
+                                                        .foodList[
+                                                            (currentIndex + i) %
+                                                                widget.foodList
+                                                                    .length]
+                                                        .image,
+                                                    width: double.infinity,
+                                                    height: height * 0.2,
+                                                    fit: BoxFit.cover,
+                                                  ),
                                                 ),
-                                                buildheight(context, 0.005),
-                                                Text(
-                                                  widget
-                                                      .foodList[
-                                                          (currentIndex + i) %
-                                                              widget.foodList
-                                                                  .length]
-                                                      .title,
-                                                  style: const TextStyle(
-                                                      fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      fontFamily: "Dm"),
-                                                  maxLines: 1,
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                ),
-                                                buildheight(context, 0.005),
-                                                Text(
-                                                  widget
-                                                      .foodList[
-                                                          (currentIndex + i) %
-                                                              widget.foodList
-                                                                  .length]
-                                                      .kcal,
-                                                  style: const TextStyle(
-                                                      fontFamily: "Dm",
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      fontSize: 14,
-                                                      color: Color(0x80303030)),
-                                                ),
-                                                buildheight(context, 0.01),
-                                                GestureDetector(
-                                                  onTap: () {
-                                                    Navigator.push(
-                                                        context,
-                                                        CupertinoPageRoute(
-                                                          builder: (context) =>
-                                                              ARatePage(
-                                                                  food: food),
-                                                        ));
-                                                  },
-                                                  child: Container(
-                                                    color:
-                                                        const Color(0xffF6F6F6),
-                                                    child: const Center(
-                                                      child: Text(
-                                                        "Rate",
-                                                        style: TextStyle(
-                                                          fontFamily: "Sf",
-                                                          fontSize: 12,
-                                                          fontWeight:
-                                                              FontWeight.w400,
-                                                          color:
-                                                              Color(0xffDCA23D),
-                                                        ),
+                                                Padding(
+                                                  padding: const EdgeInsets.all(
+                                                      10.0),
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Row(
+                                                        children: [
+                                                          Text(
+                                                            widget
+                                                                .foodList[(currentIndex +
+                                                                        i) %
+                                                                    widget
+                                                                        .foodList
+                                                                        .length]
+                                                                .price,
+                                                            style: const TextStyle(
+                                                                fontSize: 20,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w700,
+                                                                fontFamily:
+                                                                    "Dm"),
+                                                          ),
+                                                        ],
                                                       ),
-                                                    ),
+                                                      buildheight(
+                                                          context, 0.005),
+                                                      Text(
+                                                        widget
+                                                            .foodList[
+                                                                (currentIndex +
+                                                                        i) %
+                                                                    widget
+                                                                        .foodList
+                                                                        .length]
+                                                            .title,
+                                                        style: const TextStyle(
+                                                            fontSize: 14,
+                                                            fontWeight:
+                                                                FontWeight.w400,
+                                                            fontFamily: "Dm"),
+                                                        maxLines: 1,
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                      ),
+                                                      buildheight(
+                                                          context, 0.005),
+                                                      Text(
+                                                        widget
+                                                            .foodList[
+                                                                (currentIndex +
+                                                                        i) %
+                                                                    widget
+                                                                        .foodList
+                                                                        .length]
+                                                            .kcal,
+                                                        style: const TextStyle(
+                                                            fontFamily: "Dm",
+                                                            fontWeight:
+                                                                FontWeight.w400,
+                                                            fontSize: 14,
+                                                            color: Color(
+                                                                0x80303030)),
+                                                      ),
+                                                      buildheight(
+                                                          context, 0.01),
+                                                    ],
                                                   ),
                                                 ),
                                               ],
+                                            ),
+                                          ),
+                                          GestureDetector(
+                                            onTap: () {
+                                              Navigator.push(
+                                                  context,
+                                                  CupertinoPageRoute(
+                                                    builder: (context) =>
+                                                        ARatePage(food: food),
+                                                  ));
+                                            },
+                                            child: Container(
+                                              width: double.infinity,
+                                              decoration: BoxDecoration(
+                                                  color:
+                                                      const Color(0xffF6F6F6),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          20)),
+                                              child: const Center(
+                                                child: Padding(
+                                                  padding: EdgeInsets.symmetric(
+                                                      vertical: 8.0),
+                                                  child: Text(
+                                                    "Rate",
+                                                    style: TextStyle(
+                                                      fontFamily: "Sf",
+                                                      fontSize: 12,
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      color: Color(0xffDCA23D),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
                                             ),
                                           ),
                                         ],

@@ -31,6 +31,7 @@ class CostaRestaurants {
   final String time;
   final String description;
   final List<Food> menu;
+  bool isfavorite = false;
 
   CostaRestaurants({
     required this.image,

@@ -191,7 +191,7 @@ class _AddEventsPageState extends State<AddEventsPage> {
                           Navigator.push(
                             context,
                             CupertinoPageRoute(
-                              builder: (context) => AddEventsSucces(),
+                              builder: (context) => const AddEventsSucces(),
                             ),
                           );
                         }

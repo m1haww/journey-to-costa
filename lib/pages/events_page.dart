@@ -19,7 +19,6 @@ class EventsPage extends StatefulWidget {
 
 class _EventsPageState extends State<EventsPage> {
   bool isGeneralSelected = true;
-  List<GridEventsList> addedEvents = [];
 
   @override
   Widget build(BuildContext context) {
@@ -57,14 +56,14 @@ class _EventsPageState extends State<EventsPage> {
             child: ToggleSwitch(
               minWidth: 170.0,
               cornerRadius: 12.0,
-              activeBgColors: [
+              activeBgColors: const [
                 [Color(0xff999999)],
                 [Color(0xff999999)]
               ],
-              inactiveBgColor: Color(0xffECECEC),
+              inactiveBgColor: const Color(0xffECECEC),
               initialLabelIndex: isGeneralSelected ? 0 : 1,
               totalSwitches: 2,
-              labels: ['General', 'Added'],
+              labels: const ['General', 'Added'],
               radiusStyle: true,
               onToggle: (index) {
                 setState(() {
@@ -92,11 +91,12 @@ class _EventsPageState extends State<EventsPage> {
               child: Align(
                 alignment: Alignment.bottomCenter,
                 child: GestureDetector(
-                    onTap: () {
-                      Navigator.push(
+                    onTap: () async {
+                      await Navigator.push(
                           context,
                           CupertinoPageRoute(
                               builder: (context) => const AddEventsPage()));
+                      setState(() {});
                     },
                     child: buildContainer(context)),
               ),
@@ -195,7 +195,7 @@ class _EventsPageState extends State<EventsPage> {
           itemCount: eventsList.length,
           itemBuilder: (context, index) {
             final event = eventsList[index];
-            bool isSelected = provider.isEventImageSelected(event.image);
+            bool isSelected = event.isfavorite;
 
             return GestureDetector(
               onTap: () {
@@ -214,7 +214,7 @@ class _EventsPageState extends State<EventsPage> {
                     right: 10,
                     child: GestureDetector(
                       onTap: () {
-                        provider.toggleEventImageSelection(event.image);
+                        provider.togleFavoritevent(event);
                       },
                       child: Image.asset(
                         "images/vitea.png",
@@ -288,12 +288,11 @@ class _EventsPageState extends State<EventsPage> {
                       right: 10,
                       child: Consumer<AppProvider>(
                         builder: (context, provider, child) {
-                          bool isSelected =
-                              provider.isEventImageSelected(event.image);
+                          bool isSelected = event.isfavorite;
 
                           return GestureDetector(
                             onTap: () {
-                              provider.toggleEventImageSelection(event.image);
+                              provider.togleFavoritevent(event);
                             },
                             child: Image.asset(
                               "images/vitea.png",

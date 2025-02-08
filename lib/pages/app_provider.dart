@@ -313,19 +313,15 @@ class AppProvider extends ChangeNotifier {
 
   List<Signup> get signup => _signup;
   List<GridEventsList> get eventsList => _eventsList;
-  final Set<String> _selectedEvents = {}; // Stores selected event image paths
 
-  bool isEventImageSelected(String imagePath) {
-    return _selectedEvents.contains(imagePath);
+  void togleFavoriteRestaurant(CostaRestaurants restaurant) {
+    restaurant.isfavorite = !restaurant.isfavorite;
+    notifyListeners();
   }
 
-  void toggleEventImageSelection(String imagePath) {
-    if (_selectedEvents.contains(imagePath)) {
-      _selectedEvents.remove(imagePath);
-    } else {
-      _selectedEvents.add(imagePath);
-    }
-    notifyListeners(); // Notify widgets to update state
+  void togleFavoritevent(GridEventsList event) {
+    event.isfavorite = !event.isfavorite;
+    notifyListeners();
   }
 
   void addSignup(Signup signup) {

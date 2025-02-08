@@ -10,6 +10,7 @@ class GridEventsList {
   bool issaved = false;
   bool isown = false;
   File? fileImage;
+  bool isfavorite = false;
 
   GridEventsList({
     required this.image,

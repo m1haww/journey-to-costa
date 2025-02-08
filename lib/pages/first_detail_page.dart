@@ -83,13 +83,11 @@ class _FirstDetailPageState extends State<FirstDetailPage> {
                             width: 10), // Adds space between text and image
                         Consumer<AppProvider>(
                           builder: (context, provider, child) {
-                            bool isSelected = provider
-                                .isEventImageSelected(widget.event.image);
+                            bool isSelected = widget.event.isfavorite;
 
                             return GestureDetector(
                               onTap: () {
-                                provider.toggleEventImageSelection(
-                                    widget.event.image);
+                                provider.togleFavoritevent(widget.event);
                               },
                               child: Image.asset(
                                 "images/vitea.png",

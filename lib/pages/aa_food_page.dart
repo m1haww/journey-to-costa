@@ -36,14 +36,14 @@ class _AaFoodPageState extends State<AaFoodPage> {
             child: ToggleSwitch(
               minWidth: 170.0,
               cornerRadius: 12.0,
-              activeBgColors: [
-                [const Color(0xff999999)],
-                [const Color(0xff999999)]
+              activeBgColors: const [
+                [Color(0xff999999)],
+                [Color(0xff999999)]
               ],
               inactiveBgColor: const Color(0xffECECEC),
               initialLabelIndex: isAllSelected ? 0 : 1,
               totalSwitches: 2,
-              labels: ['All', 'Favourites'],
+              labels: const ['All', 'Favourites'],
               radiusStyle: true,
               onToggle: (index) {
                 setState(() {
@@ -127,13 +127,8 @@ class _AaFoodPageState extends State<AaFoodPage> {
   }
 
   Widget _buildEventGrid(List<CostaRestaurants> costarestaurants) {
-    return GridView.builder(
+    return ListView.builder(
       padding: const EdgeInsets.only(top: 10),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 1, // Display in grid format
-        mainAxisSpacing: 50,
-        childAspectRatio: 1.2,
-      ),
       itemCount: costarestaurants.length,
       itemBuilder: (context, index) {
         final good = costarestaurants[index];
@@ -145,7 +140,10 @@ class _AaFoodPageState extends State<AaFoodPage> {
                   builder: (context) => AabFoodDetailsPage(restaurants: good)),
             );
           },
-          child: _buildEventCard(good),
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 15.0),
+            child: _buildEventCard(good),
+          ),
         );
       },
     );
@@ -196,12 +194,11 @@ class _AaFoodPageState extends State<AaFoodPage> {
                       right: 10,
                       child: Consumer<AppProvider>(
                         builder: (context, provider, child) {
-                          bool isSelected =
-                              provider.isEventImageSelected(event.image);
+                          bool isSelected = event.isfavorite;
 
                           return GestureDetector(
                             onTap: () {
-                              provider.toggleEventImageSelection(event.image);
+                              provider.togleFavoriteRestaurant(event);
                             },
                             child: Image.asset(
                               "images/vitea.png",

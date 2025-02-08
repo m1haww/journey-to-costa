@@ -19,7 +19,7 @@ class _AaRateSuccesfulPageState extends State<AaRateSuccesfulPage> {
             onTap: () {
               Navigator.pop(context);
             },
-            child: Icon(Icons.arrow_back)),
+            child: const Icon(Icons.arrow_back)),
       ),
       body: SafeArea(
           child: Column(

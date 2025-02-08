@@ -1,10 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:journey_to_costa/pages/app_provider.dart';
 import 'package:journey_to_costa/pages/basement.dart';
 import 'package:journey_to_costa/pages/basements_text.dart';
-import 'package:journey_to_costa/pages/sistem.dart';
-import 'package:provider/provider.dart';
 
 class AddEventsSucces extends StatefulWidget {
   const AddEventsSucces({super.key});

@@ -11,7 +11,7 @@ import 'package:provider/provider.dart';
 class AabFoodDetailsPage extends StatefulWidget {
   final CostaRestaurants restaurants;
 
-  AabFoodDetailsPage({super.key, required this.restaurants});
+  const AabFoodDetailsPage({super.key, required this.restaurants});
 
   @override
   State<AabFoodDetailsPage> createState() => _AabFoodDetailsPageState();
@@ -83,13 +83,12 @@ class _AabFoodDetailsPageState extends State<AabFoodDetailsPage> {
                           width: 10), // Adds space between text and image
                       Consumer<AppProvider>(
                         builder: (context, provider, child) {
-                          bool isSelected = provider
-                              .isEventImageSelected(widget.restaurants.image);
+                          bool isSelected = widget.restaurants.isfavorite;
 
                           return GestureDetector(
                             onTap: () {
-                              provider.toggleEventImageSelection(
-                                  widget.restaurants.image);
+                              provider
+                                  .togleFavoriteRestaurant(widget.restaurants);
                             },
                             child: Image.asset(
                               "images/vitea.png",
@@ -179,7 +178,7 @@ class _AabFoodDetailsPageState extends State<AabFoodDetailsPage> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.all(10.0),
+                    padding: const EdgeInsets.all(10.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -230,7 +229,7 @@ class _AabFoodDetailsPageState extends State<AabFoodDetailsPage> {
                                 ));
                           },
                           child: Container(
-                            color: Color(0xffF6F6F6),
+                            color: const Color(0xffF6F6F6),
                             child: const Center(
                               child: Text(
                                 "Rate",
