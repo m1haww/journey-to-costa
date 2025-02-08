@@ -64,35 +64,42 @@ Widget buildTextForINPUT(BuildContext context, String text) {
 }
 
 Widget buildTextForFinish(BuildContext context, String text) {
-  return Center(
-    child: Row(
-      children: [
-        Text(
-          textAlign: TextAlign.center,
-          text,
-          style: const TextStyle(
-              fontFamily: "Sf",
-              fontWeight: FontWeight.w700,
-              fontSize: 34,
-              color: Colors.black),
-        ),
-      ],
+  return Container(
+    width: double.infinity,
+    child: Center(
+      child: Row(
+        children: [
+          Text(
+            textAlign: TextAlign.center,
+            text,
+            style: const TextStyle(
+                fontFamily: "Sf",
+                fontWeight: FontWeight.w700,
+                fontSize: 34,
+                color: Colors.black),
+          ),
+        ],
+      ),
     ),
   );
 }
 
 Widget buildTextUNderFInish(BuildContext context, String text) {
-  return Row(
-    children: [
-      Text(
-        text,
-        style: const TextStyle(
-            fontFamily: "Sf",
-            fontWeight: FontWeight.w400,
-            fontSize: 16,
-            color: Colors.black),
-      ),
-    ],
+  return Container(
+    width: double.infinity,
+    child: Row(
+      children: [
+        Text(
+          text,
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+              fontFamily: "Sf",
+              fontWeight: FontWeight.w400,
+              fontSize: 16,
+              color: Colors.black),
+        ),
+      ],
+    ),
   );
 }
 

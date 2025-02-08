@@ -129,8 +129,9 @@ class _AaaFoodDetailsPageState extends State<AaaFoodDetailsPage> {
                               Navigator.push(
                                   context,
                                   CupertinoPageRoute(
-                                    builder: (context) =>
-                                        const AaRateSuccesfulPage(),
+                                    builder: (context) => ARatePage(
+                                      food: food,
+                                    ),
                                   ));
                             },
                             child: buildSaveButton(context, "Rate")),
@@ -148,7 +149,7 @@ class _AaaFoodDetailsPageState extends State<AaaFoodDetailsPage> {
                                       0)
                                 Expanded(
                                   child: Container(
-                                    width: width * 0.45,
+                                    width: width * 0.35,
                                     margin: const EdgeInsets.symmetric(
                                         horizontal: 10),
                                     decoration: BoxDecoration(
@@ -169,122 +170,106 @@ class _AaaFoodDetailsPageState extends State<AaaFoodDetailsPage> {
                                                   .length), // Cycle through foods
                                       child: Column(
                                         children: [
+                                          ClipRRect(
+                                            borderRadius:
+                                                const BorderRadius.vertical(
+                                                    top: Radius.circular(20)),
+                                            child: Image.asset(
+                                              widget
+                                                  .foodList[(currentIndex + i) %
+                                                      widget.foodList.length]
+                                                  .image,
+                                              width: double.infinity,
+                                              height: height *
+                                                  0.2, // Match height of the image to the first container
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
                                           Padding(
-                                            padding: const EdgeInsets.all(16.0),
+                                            padding: const EdgeInsets.all(
+                                                10.0), // Adjusted padding to match
                                             child: Column(
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                ClipRRect(
-                                                  borderRadius:
-                                                      const BorderRadius
-                                                          .vertical(
-                                                          top: Radius.circular(
-                                                              20)),
-                                                  child: Image.asset(
-                                                    widget
-                                                        .foodList[
-                                                            (currentIndex + i) %
-                                                                widget.foodList
-                                                                    .length]
-                                                        .image,
-                                                    width: double.infinity,
-                                                    height: height * 0.2,
-                                                    fit: BoxFit.cover,
+                                                Row(
+                                                  children: [
+                                                    Text(
+                                                      widget
+                                                          .foodList[
+                                                              (currentIndex +
+                                                                      i) %
+                                                                  widget
+                                                                      .foodList
+                                                                      .length]
+                                                          .price,
+                                                      style: const TextStyle(
+                                                        fontSize: 20,
+                                                        fontWeight:
+                                                            FontWeight.w700,
+                                                        fontFamily: "Dm",
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                buildheight(context, 0.005),
+                                                Text(
+                                                  widget
+                                                      .foodList[
+                                                          (currentIndex + i) %
+                                                              widget.foodList
+                                                                  .length]
+                                                      .title,
+                                                  style: const TextStyle(
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w400,
+                                                    fontFamily: "Dm",
+                                                  ),
+                                                  maxLines: 1,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                ),
+                                                buildheight(context, 0.005),
+                                                Text(
+                                                  widget
+                                                      .foodList[
+                                                          (currentIndex + i) %
+                                                              widget.foodList
+                                                                  .length]
+                                                      .kcal,
+                                                  style: const TextStyle(
+                                                    fontFamily: "Dm",
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: 14,
+                                                    color: Color(
+                                                        0x80303030), // 50% opacity
                                                   ),
                                                 ),
-                                                Padding(
-                                                  padding: const EdgeInsets.all(
-                                                      10.0),
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Row(
-                                                        children: [
-                                                          Text(
-                                                            widget
-                                                                .foodList[(currentIndex +
-                                                                        i) %
-                                                                    widget
-                                                                        .foodList
-                                                                        .length]
-                                                                .price,
-                                                            style: const TextStyle(
-                                                                fontSize: 20,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w700,
-                                                                fontFamily:
-                                                                    "Dm"),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      buildheight(
-                                                          context, 0.005),
-                                                      Text(
-                                                        widget
-                                                            .foodList[
-                                                                (currentIndex +
-                                                                        i) %
-                                                                    widget
-                                                                        .foodList
-                                                                        .length]
-                                                            .title,
-                                                        style: const TextStyle(
-                                                            fontSize: 14,
-                                                            fontWeight:
-                                                                FontWeight.w400,
-                                                            fontFamily: "Dm"),
-                                                        maxLines: 1,
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
-                                                      ),
-                                                      buildheight(
-                                                          context, 0.005),
-                                                      Text(
-                                                        widget
-                                                            .foodList[
-                                                                (currentIndex +
-                                                                        i) %
-                                                                    widget
-                                                                        .foodList
-                                                                        .length]
-                                                            .kcal,
-                                                        style: const TextStyle(
-                                                            fontFamily: "Dm",
-                                                            fontWeight:
-                                                                FontWeight.w400,
-                                                            fontSize: 14,
-                                                            color: Color(
-                                                                0x80303030)),
-                                                      ),
-                                                      buildheight(
-                                                          context, 0.01),
-                                                    ],
-                                                  ),
-                                                ),
+                                                buildheight(context, 0.01),
                                               ],
                                             ),
                                           ),
                                           GestureDetector(
                                             onTap: () {
                                               Navigator.push(
-                                                  context,
-                                                  CupertinoPageRoute(
-                                                    builder: (context) =>
-                                                        ARatePage(food: food),
-                                                  ));
+                                                context,
+                                                CupertinoPageRoute(
+                                                  builder: (context) =>
+                                                      ARatePage(food: food),
+                                                ),
+                                              );
                                             },
                                             child: Container(
                                               width: double.infinity,
-                                              decoration: BoxDecoration(
-                                                  color:
-                                                      const Color(0xffF6F6F6),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          20)),
+                                              decoration: const BoxDecoration(
+                                                color: Color(0xffF6F6F6),
+                                                borderRadius: BorderRadius.only(
+                                                  bottomLeft:
+                                                      Radius.circular(12),
+                                                  bottomRight:
+                                                      Radius.circular(12),
+                                                ),
+                                              ),
                                               child: const Center(
                                                 child: Padding(
                                                   padding: EdgeInsets.symmetric(

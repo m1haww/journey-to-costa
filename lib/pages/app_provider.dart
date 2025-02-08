@@ -36,7 +36,7 @@ class AppProvider extends ChangeNotifier {
             "The beneficial properties of the water from the spring on Puig de les Ànimes hill in Caldes de Malavella were known even to the ancient Romans. \n\n"
             "In 1881, Dr. Modest Furest i Roca, a proponent of hydrotherapy, purchased the land where the spring was located and began to commercialize the water. The Balneari Vichy Catalán spa opened in 1898, featuring a stunning modernist design by architect Gaietà Buïgas i Monravà. Today, the spa and its surrounding park remain a symbol of Catalonia's thermal water heritage."),
     Sights(
-        title: "Casa Bonaventura Caner Battaler",
+        title: "Casa Bonaventura Caner  Battaler",
         image: "images/eta.png",
         miniinfo: "Casa Bonaventura Caner Battaler",
         description:
@@ -266,7 +266,7 @@ class AppProvider extends ChangeNotifier {
     GridEventsList(
       image: "images/1.png",
       title: "Palafrugell City Day ",
-      info: "Palafrugell City Day, also known as ...",
+      info: "Palafrugell City Day (Saint Margaret's Day)",
       date: "01/01/25",
       time: "12:00 - 06:00",
       description:
@@ -275,7 +275,7 @@ class AppProvider extends ChangeNotifier {
     GridEventsList(
       image: "images/2.png",
       title: "Menú de la Gamba",
-      info: "Menú de la Gamba de Palamós ...",
+      info: "Menú de la Gamba de Palamós",
       date: "05/02/25",
       time: "15:00 - 23:00",
       description:
@@ -283,8 +283,8 @@ class AppProvider extends ChangeNotifier {
     ),
     GridEventsList(
       image: "images/4.png",
-      title: "Rice planting in Palse ",
-      info: "Traditional Rice Planting Festival ...",
+      title: "Rice planting in Palse",
+      info: "Rice planting in Palse",
       date: "10/03/25",
       time: "18:00 - 22:00",
       description:
@@ -293,7 +293,7 @@ class AppProvider extends ChangeNotifier {
     GridEventsList(
       image: "images/5.png",
       title: "Winter Carnaval ",
-      info: "Winter Carnival – A week of ...",
+      info: "Winter Carnaval (spanish. Carnestoltes",
       date: "20/04/25",
       time: "10:00 - 17:00",
       description:
@@ -302,7 +302,7 @@ class AppProvider extends ChangeNotifier {
     GridEventsList(
       image: "images/6.png",
       title: "Pessebre Vivent",
-      info: "The Living Nativity – A ...",
+      info: "Pessebre Vivent",
       date: "15/05/25",
       time: "08:00 - 14:00",
       description:
@@ -321,6 +321,11 @@ class AppProvider extends ChangeNotifier {
 
   void togleFavoritevent(GridEventsList event) {
     event.isfavorite = !event.isfavorite;
+    notifyListeners();
+  }
+
+  void togleFavoritSight(Sights sight) {
+    sight.isfavorite = !sight.isfavorite;
     notifyListeners();
   }
 

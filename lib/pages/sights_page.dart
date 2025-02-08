@@ -8,8 +8,9 @@ import 'package:journey_to_costa/pages/sistem.dart';
 import 'package:provider/provider.dart';
 
 class SightsPage extends StatefulWidget {
-  const SightsPage({super.key});
-
+  const SightsPage({
+    super.key,
+  });
   @override
   State<SightsPage> createState() => _SightsPageState();
 }
@@ -79,15 +80,42 @@ class _SightsPageState extends State<SightsPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ClipRRect(
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
-            child: Image.asset(
-              sights.image,
-              width: double.infinity,
-              height: 150,
-              fit: BoxFit.cover,
+          Stack(children: [
+            ClipRRect(
+              borderRadius:
+                  const BorderRadius.vertical(top: Radius.circular(12)),
+              child: Image.asset(
+                sights.image,
+                width: double.infinity,
+                height: 150,
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
+            Positioned(
+              top: 10,
+              right: 10,
+              child: Consumer<AppProvider>(
+                builder: (context, provider, child) {
+                  bool isSelected = sights.isfavorite;
+
+                  return GestureDetector(
+                    onTap: () {
+                      provider.togleFavoritSight(sights);
+                    },
+                    child: Image.asset(
+                      "images/vitea.png",
+                      color: isSelected
+                          ? Colors.orange
+                          : null, // Apply color only when selected
+                      colorBlendMode: isSelected
+                          ? BlendMode.srcIn
+                          : null, // Keeps transparency
+                    ),
+                  );
+                },
+              ),
+            ),
+          ]),
           Padding(
             padding: const EdgeInsets.all(10),
             child: Column(
@@ -106,13 +134,15 @@ class _SightsPageState extends State<SightsPage> {
                 ),
                 buildheight(context, 0.01),
                 Text(
-                  sights.miniinfo,
+                  sights.description,
                   style: TextStyle(
                     fontFamily: "Sf",
                     fontWeight: FontWeight.w400,
                     fontSize: 12,
                     color: Colors.black.withOpacity(0.4),
                   ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ],
             ),

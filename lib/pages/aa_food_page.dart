@@ -139,6 +139,29 @@ class _AaFoodPageState extends State<AaFoodPage> {
   }
 
   Widget _buildEventCard(CostaRestaurants event) {
+    if (event.isfavorite) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(
+              Icons.event,
+              size: 80,
+              color: Color(0xffDCA23D),
+            ),
+            buildheight(context, 0.01),
+            const Text(
+              "You didn't appreciate anything",
+              style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black,
+                  fontFamily: "Sf"),
+            ),
+          ],
+        ),
+      );
+    }
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Container(
@@ -255,13 +278,13 @@ class _AaFoodPageState extends State<AaFoodPage> {
                 const SizedBox(height: 8),
                 // Short Description
                 Text(
-                  event.description,
+                  event.descriptionfull,
                   style: TextStyle(
                       fontFamily: "Sf",
                       fontWeight: FontWeight.w400,
                       fontSize: 14,
                       color: Colors.black.withOpacity(0.7)),
-                  maxLines: 2,
+                  maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
                 const SizedBox(height: 8),

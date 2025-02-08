@@ -190,6 +190,7 @@ class Sights {
 
   final String miniinfo;
   final String description;
+  bool isfavorite = false;
 
   Sights({
     required this.image,

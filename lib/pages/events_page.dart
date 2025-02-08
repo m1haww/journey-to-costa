@@ -4,7 +4,6 @@ import 'package:journey_to_costa/pages/add_events_page.dart';
 import 'package:journey_to_costa/pages/app_provider.dart';
 import 'package:journey_to_costa/pages/basement.dart';
 import 'package:journey_to_costa/pages/basements_text.dart';
-import 'package:journey_to_costa/pages/calendar_page.dart';
 import 'package:journey_to_costa/pages/first_detail_page.dart';
 import 'package:journey_to_costa/pages/grid_events_list.dart';
 import 'package:provider/provider.dart';
@@ -28,25 +27,6 @@ class _EventsPageState extends State<EventsPage> {
       appBar: AppBar(
         title: buildTextForAppbar(context, "Brava Events"),
         centerTitle: false,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(top: 16.0),
-            child: GestureDetector(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    CupertinoPageRoute(
-                        builder: (context) => const CalendarPage()));
-              },
-              child: const Image(image: AssetImage("images/calendar.png")),
-            ),
-          ),
-          const SizedBox(width: 10),
-          const Padding(
-            padding: EdgeInsets.only(right: 16.0, top: 16),
-            child: Image(image: AssetImage("images/inima.png")),
-          )
-        ],
       ),
       body: Column(
         children: [
@@ -185,13 +165,8 @@ class _EventsPageState extends State<EventsPage> {
   Widget _buildEventGrid(List<GridEventsList> eventsList) {
     return Consumer<AppProvider>(
       builder: (context, provider, child) {
-        return GridView.builder(
+        return ListView.builder(
           padding: const EdgeInsets.only(top: 10),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 1, // Display in grid format
-            mainAxisSpacing: 50,
-            childAspectRatio: 1.6,
-          ),
           itemCount: eventsList.length,
           itemBuilder: (context, index) {
             final event = eventsList[index];
@@ -208,7 +183,10 @@ class _EventsPageState extends State<EventsPage> {
               },
               child: Stack(
                 children: [
-                  _buildEventCard(event),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 15.0),
+                    child: _buildEventCard(event),
+                  ),
                   Positioned(
                     top: 10,
                     right: 10,
@@ -329,12 +307,15 @@ class _EventsPageState extends State<EventsPage> {
                         overflow: TextOverflow.ellipsis,
                       ),
                       Text(
-                        event.info,
+                        event.description,
                         style: TextStyle(
-                            fontFamily: "Sf",
-                            fontWeight: FontWeight.w400,
-                            fontSize: 12,
-                            color: Colors.black.withOpacity(0.4)),
+                          fontFamily: "Sf",
+                          fontWeight: FontWeight.w400,
+                          fontSize: 12,
+                          color: Colors.black.withOpacity(0.4),
+                        ),
+                        maxLines: 1, // Limits text to 2 lines
+                        overflow: TextOverflow.ellipsis,
                       )
                     ],
                   ),

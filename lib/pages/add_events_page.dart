@@ -159,7 +159,8 @@ class _AddEventsPageState extends State<AddEventsPage> {
               buildheight(context, 0.02),
               buildTextForINPUT(context, "Description"),
               buildheight(context, 0.02),
-              buildInputBig(context, "Task name", Colors.grey, Colors.white,
+              buildInputBig(context, "Task name", Colors.black, Colors.white,
+                  Color(0xff999999),
                   controller: _descriptioncontroler),
               buildheight(context, 0.02),
               buildTextForINPUT(context, "Cover"),
@@ -181,7 +182,7 @@ class _AddEventsPageState extends State<AddEventsPage> {
                             info: _namecontrolerr.text,
                             image: (_selectedImage?.path ?? "images/V.png"),
                             time: DateFormat('HH:mm').format(DateTime.now()),
-                            title: '',
+                            title: _namecontrolerr.text,
                           );
 
                           newEvent.isown = true;

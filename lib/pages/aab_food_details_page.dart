@@ -165,7 +165,6 @@ class _AabFoodDetailsPageState extends State<AabFoodDetailsPage> {
                 ],
               ),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ClipRRect(
                     borderRadius:
@@ -177,60 +176,74 @@ class _AabFoodDetailsPageState extends State<AabFoodDetailsPage> {
                       fit: BoxFit.cover,
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Price with discount
-                        Row(
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              foodItem.price,
-                              style: const TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w700,
-                                  fontFamily: "Dm"),
+                            // Price with discount
+                            Row(
+                              children: [
+                                Text(
+                                  foodItem.price,
+                                  style: const TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w700,
+                                      fontFamily: "Dm"),
+                                ),
+                              ],
                             ),
+                            buildheight(context, 0.005),
+                            // Title
+                            Text(
+                              foodItem.title,
+                              style: const TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
+                                  fontFamily: "Dm"),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            buildheight(context, 0.005),
+                            // Description
+                            Text(
+                              foodItem.kcal,
+                              style: const TextStyle(
+                                  fontFamily: "Dm",
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 14,
+                                  color: Color(
+                                      0x80303030) // 50% opacity (80 in hex)
+
+                                  ),
+                            ),
+                            buildheight(context, 0.01),
                           ],
                         ),
-                        buildheight(context, 0.005),
-                        // Title
-                        Text(
-                          foodItem.title,
-                          style: const TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                              fontFamily: "Dm"),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        buildheight(context, 0.005),
-                        // Description
-                        Text(
-                          foodItem.kcal,
-                          style: const TextStyle(
-                              fontFamily: "Dm",
-                              fontWeight: FontWeight.w400,
-                              fontSize: 14,
-                              color:
-                                  Color(0x80303030) // 50% opacity (80 in hex)
-
-                              ),
-                        ),
-                        buildheight(context, 0.01),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                CupertinoPageRoute(
-                                  builder: (context) =>
-                                      ARatePage(food: foodItem),
-                                ));
-                          },
-                          child: Container(
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              CupertinoPageRoute(
+                                builder: (context) => ARatePage(food: foodItem),
+                              ));
+                        },
+                        child: Container(
+                          width: double.infinity,
+                          decoration: BoxDecoration(
                             color: const Color(0xffF6F6F6),
-                            child: const Center(
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(12),
+                              bottomRight: Radius.circular(12),
+                            ),
+                          ),
+                          child: const Center(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(vertical: 8.0),
                               child: Text(
                                 "Rate",
                                 style: TextStyle(
@@ -243,8 +256,8 @@ class _AabFoodDetailsPageState extends State<AabFoodDetailsPage> {
                             ),
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ],
               ),

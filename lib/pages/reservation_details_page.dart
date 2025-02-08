@@ -7,16 +7,16 @@ import 'package:journey_to_costa/pages/grid_events_list.dart';
 import 'package:journey_to_costa/pages/sign_up.dart';
 import 'package:provider/provider.dart';
 
-class FirstDetailPage extends StatefulWidget {
+class ReservationDetailsPage extends StatefulWidget {
   final GridEventsList event;
 
-  const FirstDetailPage({super.key, required this.event});
+  const ReservationDetailsPage({super.key, required this.event});
 
   @override
-  State<FirstDetailPage> createState() => _FirstDetailPageState();
+  State<ReservationDetailsPage> createState() => _ReservationDetailsPageState();
 }
 
-class _FirstDetailPageState extends State<FirstDetailPage> {
+class _ReservationDetailsPageState extends State<ReservationDetailsPage> {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -65,37 +65,14 @@ class _FirstDetailPageState extends State<FirstDetailPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Expanded(
-                          child: Text(
-                            widget.event.title,
-                            style: const TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.w700,
-                            ),
-                            maxLines: 3, // Limits text to 2 lines
-                            // Adds "..." if text is too long
+                        Text(
+                          widget.event.title,
+                          style: const TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.w700,
                           ),
-                        ),
-                        const SizedBox(
-                            width: 10), // Adds space between text and image
-                        Consumer<AppProvider>(
-                          builder: (context, provider, child) {
-                            bool isSelected = widget.event.isfavorite;
-
-                            return GestureDetector(
-                              onTap: () {
-                                provider.togleFavoritevent(widget.event);
-                              },
-                              child: Image.asset(
-                                "images/vitea.png",
-                                width: 30, // Adjust image width as needed
-                                height: 30, // Adjust image height as needed
-                                color: isSelected ? Colors.orange : null,
-                                colorBlendMode:
-                                    isSelected ? BlendMode.srcIn : null,
-                              ),
-                            );
-                          },
+                          maxLines: 3, // Limits text to 2 lines
+                          // Adds "..." if text is too long
                         ),
                       ],
                     ),
@@ -105,29 +82,13 @@ class _FirstDetailPageState extends State<FirstDetailPage> {
                     Text(
                       widget.event.description,
                       style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
                         fontFamily: "Sf",
                         color: Colors.black,
                       ),
                     ),
                     buildheight(context, 0.02),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          CupertinoPageRoute(
-                            builder: (context) => SignUp(
-                              event: widget.event,
-                            ),
-                          ),
-                        );
-                      },
-                      child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child: buildSaveButton(context, "Sign up"),
-                      ),
-                    ),
                   ],
                 ),
               ),

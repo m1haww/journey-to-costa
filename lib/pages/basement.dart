@@ -33,7 +33,7 @@ Widget buildInput(
   final width = MediaQuery.of(context).size.width;
 
   return Container(
-    width: width * 0.9, // Set width to 90% of the screen
+    width: width * 0.9,
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(16),
       color: colorbackground,
@@ -44,8 +44,7 @@ Widget buildInput(
     ),
     child: TextField(
       controller: controller,
-
-      keyboardType: TextInputType.multiline, // Enables multi-line input
+      keyboardType: TextInputType.multiline,
       decoration: InputDecoration(
         hintText: text,
         hintStyle: TextStyle(
@@ -54,9 +53,9 @@ Widget buildInput(
           fontSize: 16,
           color: colortext,
         ),
-        contentPadding: const EdgeInsets.symmetric(
-            horizontal: 16, vertical: 12), // Proper padding
-        border: InputBorder.none, // Removes default underline
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        border: InputBorder.none,
       ),
       style: TextStyle(
         fontFamily: "Sf",
@@ -64,37 +63,38 @@ Widget buildInput(
         fontSize: 16,
         color: colortext,
       ),
+      cursorColor: Colors.black,
     ),
   );
 }
 
-Widget buildInputBig(
-    BuildContext context, String text, Color colortext, Color colorbackground,
+Widget buildInputBig(BuildContext context, String text, Color colortext,
+    Color colorbackground, Color colorhint,
     {required TextEditingController controller}) {
   final width = MediaQuery.of(context).size.width;
 
   return Container(
-    width: width * 0.9, // Set width to 90% of the screen
+    width: width * 0.9,
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(16),
       color: colorbackground,
       border: Border.all(
-        color: const Color(0xffDCA23D), // Border color
+        color: const Color(0xffDCA23D),
         width: 1,
       ),
     ),
     child: TextField(
       controller: controller,
-      minLines: 3, // Minimum of 3 lines
-      maxLines: null, // Allows unlimited lines
-      keyboardType: TextInputType.multiline, // Enables multi-line input
+      minLines: 3,
+      maxLines: null,
+      keyboardType: TextInputType.multiline,
       decoration: InputDecoration(
         hintText: text,
         hintStyle: TextStyle(
           fontFamily: "Sf",
           fontWeight: FontWeight.w400,
           fontSize: 16,
-          color: colortext,
+          color: colorhint,
         ),
         contentPadding: const EdgeInsets.symmetric(
             horizontal: 16, vertical: 12), // Proper padding
@@ -106,6 +106,7 @@ Widget buildInputBig(
         fontSize: 16,
         color: colortext,
       ),
+      cursorColor: Colors.black, // Set the cursor color to black
     ),
   );
 }

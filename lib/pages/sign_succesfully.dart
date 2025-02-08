@@ -31,16 +31,12 @@ class _SignSuccesfullyState extends State<SignSuccesfully> {
           child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             buildheight(context, 0.02),
-            Center(
-                child: buildTextForFinish(
-                    context, "You successfully \n signed up")),
+            buildTextForFinish(context, "You successfully \n signed up"),
             buildheight(context, 0.02),
-            Center(
-                child: buildTextUNderFInish(
-                    context, "Manager will call you soon")),
+            buildTextUNderFInish(context, "Manager will call you soon"),
             buildheight(context, 0.02),
             Container(
               padding: const EdgeInsets.all(12),
@@ -49,14 +45,27 @@ class _SignSuccesfullyState extends State<SignSuccesfully> {
                 borderRadius: BorderRadius.circular(12),
                 color: Colors.grey.shade200,
               ),
-              child: const Column(
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Heading",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    widget.event.title,
+                    style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: "Sf",
+                        color: Colors.black),
                   ),
-                  Text("Description", style: TextStyle(color: Colors.grey)),
+                  Text(
+                    widget.event.description,
+                    style: const TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                        fontFamily: "Sf",
+                        color: Color(0xff999999)),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ],
               ),
             ),

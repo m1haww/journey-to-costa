@@ -44,7 +44,7 @@ class _AddEventsSuccesState extends State<AddEventsSucces> {
                   Navigator.pop(context);
                   Navigator.pop(context);
                 },
-                child: buildSaveButton(context, "Close"))
+                child: buildSaveButton(context, "Close")),
           ],
         ),
       )),

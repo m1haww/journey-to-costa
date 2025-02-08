@@ -96,7 +96,9 @@ class _SignUpState extends State<SignUp> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(
+    BuildContext context,
+  ) {
     final width = MediaQuery.of(context).size.width;
 
     return Scaffold(
@@ -122,14 +124,27 @@ class _SignUpState extends State<SignUp> {
                 borderRadius: BorderRadius.circular(12),
                 color: Colors.grey.shade200,
               ),
-              child: const Column(
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Heading",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    widget.event.title,
+                    style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: "Sf",
+                        color: Colors.black),
                   ),
-                  Text("Description", style: TextStyle(color: Colors.grey)),
+                  Text(
+                    widget.event.description,
+                    style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                        fontFamily: "Sf",
+                        color: Color(0xff999999)),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ],
               ),
             ),
@@ -143,7 +158,8 @@ class _SignUpState extends State<SignUp> {
             buildInput(context, "Name", Colors.grey, Colors.white,
                 controller: _namecontroler),
             buildheight(context, 0.02),
-            buildInputBig(context, "Comment", Colors.grey, Colors.white,
+            buildInputBig(context, "Comment", Colors.black, Colors.white,
+                Color(0xff999999),
                 controller: _commentcontroler),
             const Spacer(),
             GestureDetector(

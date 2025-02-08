@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:journey_to_costa/pages/aa_rate_succesful_page.dart';
@@ -46,8 +48,8 @@ class _ARatePageState extends State<ARatePage> {
             buildheight(context, 0.02),
             buildTextdetails(context, "Comment"),
             buildheight(context, 0.02),
-            buildInputBig(
-                context, "Task name", Colors.black, const Color(0xffF6F6F6),
+            buildInputBig(context, "Comment", Colors.black,
+                const Color(0xffF6F6F6), Color(0xff999999),
                 controller: _comment),
             buildheight(context, 0.02),
             buildTextdetails(context, "Grade"),
@@ -75,13 +77,15 @@ class _ARatePageState extends State<ARatePage> {
                 ),
               ),
             ),
-            const Spacer(),
+            Spacer(),
             GestureDetector(
                 onTap: () {
                   Navigator.push(
                       context,
                       CupertinoPageRoute(
-                        builder: (context) => const AaRateSuccesfulPage(),
+                        builder: (context) => AaRateSuccesfulPage(
+                          food: widget.food,
+                        ),
                       ));
                 },
                 child: buildSaveButton(context, "Save"))

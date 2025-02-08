@@ -5,8 +5,8 @@ import 'package:journey_to_costa/pages/basement.dart';
 import 'package:journey_to_costa/pages/basements_text.dart';
 import 'package:journey_to_costa/pages/first_detail_page.dart';
 import 'package:journey_to_costa/pages/grid_events_list.dart';
+import 'package:journey_to_costa/pages/reservation_details_page.dart';
 import 'package:provider/provider.dart';
-import 'package:toggle_switch/toggle_switch.dart';
 
 class ReservationsPage extends StatefulWidget {
   const ReservationsPage({super.key});
@@ -44,24 +44,48 @@ class _ReservationsPageState extends State<ReservationsPage> {
   }
 
   Widget _buildEventGrid(List<GridEventsList> eventsList) {
-    return GridView.builder(
+    if (eventsList.isEmpty) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(
+              Icons.event,
+              size: 80,
+              color: Color(0xffDCA23D),
+            ),
+            buildheight(context, 0.01),
+            const Text(
+              "You didn't sign up for anything",
+              style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black,
+                  fontFamily: "Sf"),
+            ),
+          ],
+        ),
+      );
+    }
+
+    return ListView.builder(
       padding: const EdgeInsets.only(top: 10),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 1,
-        mainAxisSpacing: 50,
-        childAspectRatio: 1.6,
-      ),
       itemCount: eventsList.length,
       itemBuilder: (context, index) {
         final event = eventsList[index];
         return GestureDetector(
           onTap: () {
             Navigator.push(
-                context,
-                CupertinoPageRoute(
-                    builder: (context) => FirstDetailPage(event: event)));
+              context,
+              CupertinoPageRoute(
+                builder: (context) => ReservationDetailsPage(event: event),
+              ),
+            );
           },
-          child: _buildEventCard(event),
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 15.0),
+            child: _buildEventCard(event),
+          ),
         );
       },
     );
@@ -98,15 +122,31 @@ class _ReservationsPageState extends State<ReservationsPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
-                  child: Text(
-                    event.info,
-                    style: const TextStyle(
-                        fontFamily: "Sf",
-                        fontWeight: FontWeight.w700,
-                        fontSize: 18,
-                        color: Colors.black),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        event.title,
+                        style: const TextStyle(
+                            fontFamily: "Sf",
+                            fontWeight: FontWeight.w700,
+                            fontSize: 18,
+                            color: Colors.black),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      Text(
+                        event.description,
+                        style: TextStyle(
+                          fontFamily: "Sf",
+                          fontWeight: FontWeight.w400,
+                          fontSize: 12,
+                          color: Colors.black.withOpacity(0.4),
+                        ),
+                        maxLines: 1, // Limits text to 2 lines
+                        overflow: TextOverflow.ellipsis,
+                      )
+                    ],
                   ),
                 ),
                 const SizedBox(width: 10),

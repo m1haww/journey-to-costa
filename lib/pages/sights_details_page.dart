@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:journey_to_costa/pages/app_provider.dart';
 import 'package:journey_to_costa/pages/basement.dart';
+import 'package:journey_to_costa/pages/basements_text.dart';
 import 'package:journey_to_costa/pages/sistem.dart';
+import 'package:provider/provider.dart';
 
 class SightsDetailsPage extends StatefulWidget {
   final Sights sights;
@@ -52,15 +55,52 @@ class _SightsDetailsPageState extends State<SightsDetailsPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      widget.sights.miniinfo,
-                      style: const TextStyle(
-                          fontSize: 22, fontWeight: FontWeight.bold),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            widget.sights.title,
+                            style: const TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        const SizedBox(
+                            width: 10), // Adds space between text and image
+                        Consumer<AppProvider>(
+                          builder: (context, provider, child) {
+                            bool isSelected = widget.sights.isfavorite;
+
+                            return GestureDetector(
+                              onTap: () {
+                                provider.togleFavoritSight(widget.sights);
+                              },
+                              child: Image.asset(
+                                "images/vitea.png",
+                                width: 30, // Adjust image width as needed
+                                height: 30, // Adjust image height as needed
+                                color: isSelected ? Colors.orange : null,
+                                colorBlendMode:
+                                    isSelected ? BlendMode.srcIn : null,
+                              ),
+                            );
+                          },
+                        ),
+                      ],
                     ),
-                    const SizedBox(height: 10),
+                    buildTextdetails(context, "Description"),
+                    buildheight(context, 0.02),
                     Text(
-                      "Date: ${widget.sights.description}",
-                      style: const TextStyle(fontSize: 16),
+                      widget.sights.description,
+                      style: const TextStyle(
+                          fontSize: 14,
+                          fontFamily: "Sf",
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black),
                     ),
                     buildheight(context, 0.02),
                   ],
