@@ -201,6 +201,18 @@ class _EventsPageState extends State<EventsPage> {
                       ),
                     ),
                   ),
+                  Positioned(
+                    top: 10,
+                    left: 10,
+                    child: GestureDetector(
+                      onTap: () {
+                        _showActionSheet(context, event);
+                      },
+                      child: Image.asset(
+                        "images/dots.png",
+                      ),
+                    ),
+                  ),
                 ],
               ),
             );
@@ -348,6 +360,120 @@ class _EventsPageState extends State<EventsPage> {
           ),
         ],
       ),
+    );
+  }
+
+  void _showActionSheet(BuildContext context, GridEventsList event) {
+    showCupertinoModalPopup(
+      context: context,
+      builder: (BuildContext context) {
+        return CupertinoActionSheet(
+          actions: [
+            CupertinoActionSheetAction(
+              onPressed: () async {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return CupertinoAlertDialog(
+                      title: const Text(
+                        "Delete the reservation?",
+                        style: TextStyle(
+                            fontFamily: "Sf",
+                            fontSize: 17,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black),
+                      ),
+                      content: const Text(
+                        "Are you sure that you want to delete the reservation?",
+                        style: TextStyle(
+                            fontFamily: "Sf",
+                            fontSize: 13,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.black),
+                      ),
+                      actions: [
+                        CupertinoDialogAction(
+                          onPressed: () async {
+                            final provider = Provider.of<AppProvider>(context,
+                                listen: false);
+
+                            await Future.delayed(
+                                const Duration(milliseconds: 300));
+
+                            setState(() {
+                              provider.deleteEvent(event);
+                            });
+
+                            Navigator.pop(context);
+                            Navigator.pop(context);
+                          },
+                          child: const Text(
+                            "Delete",
+                            style: TextStyle(
+                                fontFamily: "Sf",
+                                fontSize: 17,
+                                fontWeight: FontWeight.w500,
+                                color: Color(0xffFF0E0A)),
+                          ),
+                          isDestructiveAction: true,
+                        ),
+                        CupertinoDialogAction(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text(
+                            "Cancel",
+                            style: TextStyle(
+                                fontFamily: "Sf",
+                                fontSize: 17,
+                                fontWeight: FontWeight.w400,
+                                color: Color(0xffDCA23D)),
+                          ),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+              isDestructiveAction: true,
+              child: const Text(
+                "Delete",
+                style: TextStyle(
+                    fontFamily: "Sf",
+                    fontSize: 17,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xffFF0E0A)),
+              ),
+            ),
+            CupertinoActionSheetAction(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text(
+                "Cancel",
+                style: TextStyle(
+                    fontFamily: "Sf",
+                    fontSize: 17,
+                    fontWeight: FontWeight.w400,
+                    color: Color(0xffDCA23D)),
+              ),
+            ),
+          ],
+          cancelButton: CupertinoActionSheetAction(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text(
+              "Close",
+              style: TextStyle(
+                  fontFamily: "Sf",
+                  fontSize: 17,
+                  fontWeight: FontWeight.w400,
+                  color: Color(0xffDCA23D)),
+            ),
+          ),
+        );
+      },
     );
   }
 }

@@ -40,9 +40,8 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: buildTextForAppbar(context, "Settings"),
+        flexibleSpace: Center(child: buildTextForAppbar(context, "Settings")),
         centerTitle: true,
-        leading: null,
       ),
       body: SafeArea(
         child: Padding(

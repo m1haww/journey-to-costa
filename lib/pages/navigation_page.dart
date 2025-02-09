@@ -16,11 +16,11 @@ class _NavigationPageState extends State<NavigationPage> {
   int _currentIndex = 0;
 
   final List<Widget> _pages = [
-    const EventsPage(), // Events Page
-    const ReservationsPage(), // Reservations Page
-    const AaFoodPage(), // Food Page
-    const SightsPage(), // Sights Page
-    const SettingsPage(), // Settings Page
+    const EventsPage(),
+    const ReservationsPage(),
+    const AaFoodPage(),
+    const SightsPage(),
+    const SettingsPage(),
   ];
 
   @override
@@ -28,7 +28,7 @@ class _NavigationPageState extends State<NavigationPage> {
     return Scaffold(
       body: Stack(
         children: [
-          _pages[_currentIndex], // Show current page
+          _pages[_currentIndex],
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -38,9 +38,21 @@ class _NavigationPageState extends State<NavigationPage> {
         currentIndex: _currentIndex,
         onTap: (index) {
           setState(() {
-            _currentIndex = index; // Change page
+            _currentIndex = index;
           });
         },
+        type: BottomNavigationBarType.fixed,
+        selectedLabelStyle: const TextStyle(
+          fontWeight: FontWeight.w600,
+          fontSize: 10,
+          fontFamily: "Sf",
+          color: Color(0xffDCA23D),
+        ),
+        unselectedLabelStyle: const TextStyle(
+            fontWeight: FontWeight.w600,
+            fontSize: 10,
+            color: Color(0xff999999),
+            fontFamily: "Sf"),
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.event), label: "Events"),
           BottomNavigationBarItem(

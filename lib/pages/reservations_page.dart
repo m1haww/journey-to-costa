@@ -107,15 +107,30 @@ class _ReservationsPageState extends State<ReservationsPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ClipRRect(
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
-            child: Image.asset(
-              event.image,
-              width: double.infinity,
-              height: 150,
-              fit: BoxFit.cover,
+          Stack(children: [
+            ClipRRect(
+              borderRadius:
+                  const BorderRadius.vertical(top: Radius.circular(12)),
+              child: Image.asset(
+                event.image,
+                width: double.infinity,
+                height: 150,
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
+            Positioned(
+              top: 10,
+              left: 10,
+              child: GestureDetector(
+                onTap: () {
+                  _showActionSheet(context, event);
+                },
+                child: Image.asset(
+                  "images/dots.png",
+                ),
+              ),
+            ),
+          ]),
           Padding(
             padding: const EdgeInsets.all(10),
             child: Row(
@@ -177,6 +192,120 @@ class _ReservationsPageState extends State<ReservationsPage> {
           ),
         ],
       ),
+    );
+  }
+
+  void _showActionSheet(BuildContext context, GridEventsList addedEvents) {
+    showCupertinoModalPopup(
+      context: context,
+      builder: (BuildContext context) {
+        return CupertinoActionSheet(
+          actions: [
+            CupertinoActionSheetAction(
+              onPressed: () async {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return CupertinoAlertDialog(
+                      title: const Text(
+                        "Delete the reservation?",
+                        style: TextStyle(
+                            fontFamily: "Sf",
+                            fontSize: 17,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black),
+                      ),
+                      content: const Text(
+                        "Are you sure that you want to delete the reservation?",
+                        style: TextStyle(
+                            fontFamily: "Sf",
+                            fontSize: 13,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.black),
+                      ),
+                      actions: [
+                        CupertinoDialogAction(
+                          onPressed: () async {
+                            final provider = Provider.of<AppProvider>(context,
+                                listen: false);
+
+                            await Future.delayed(
+                                const Duration(milliseconds: 300));
+
+                            setState(() {
+                              provider.deleteEvent(addedEvents);
+                            });
+
+                            Navigator.pop(context);
+                            Navigator.pop(context);
+                          },
+                          child: const Text(
+                            "Delete",
+                            style: TextStyle(
+                                fontFamily: "Sf",
+                                fontSize: 17,
+                                fontWeight: FontWeight.w500,
+                                color: Color(0xffFF0E0A)),
+                          ),
+                          isDestructiveAction: true,
+                        ),
+                        CupertinoDialogAction(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text(
+                            "Cancel",
+                            style: TextStyle(
+                                fontFamily: "Sf",
+                                fontSize: 17,
+                                fontWeight: FontWeight.w400,
+                                color: Color(0xffDCA23D)),
+                          ),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+              isDestructiveAction: true,
+              child: const Text(
+                "Delete",
+                style: TextStyle(
+                    fontFamily: "Sf",
+                    fontSize: 17,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xffFF0E0A)),
+              ),
+            ),
+            CupertinoActionSheetAction(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text(
+                "Cancel",
+                style: TextStyle(
+                    fontFamily: "Sf",
+                    fontSize: 17,
+                    fontWeight: FontWeight.w400,
+                    color: Color(0xffDCA23D)),
+              ),
+            ),
+          ],
+          cancelButton: CupertinoActionSheetAction(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text(
+              "Close",
+              style: TextStyle(
+                  fontFamily: "Sf",
+                  fontSize: 17,
+                  fontWeight: FontWeight.w400,
+                  color: Color(0xffDCA23D)),
+            ),
+          ),
+        );
+      },
     );
   }
 }

@@ -116,6 +116,30 @@ class _AaFoodPageState extends State<AaFoodPage> {
   }
 
   Widget _buildEventGrid(List<CostaRestaurants> costarestaurants) {
+    if (costarestaurants.isEmpty) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(
+              Icons.favorite_border,
+              size: 80,
+              color: Color(0xffDCA23D),
+            ),
+            buildheight(context, 0.01),
+            const Text(
+              "You didn't appreciate anything",
+              style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black,
+                  fontFamily: "Sf"),
+            ),
+          ],
+        ),
+      );
+    }
+
     return ListView.builder(
       padding: const EdgeInsets.only(top: 10),
       itemCount: costarestaurants.length,
@@ -139,29 +163,6 @@ class _AaFoodPageState extends State<AaFoodPage> {
   }
 
   Widget _buildEventCard(CostaRestaurants event) {
-    if (event.isfavorite) {
-      return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(
-              Icons.event,
-              size: 80,
-              color: Color(0xffDCA23D),
-            ),
-            buildheight(context, 0.01),
-            const Text(
-              "You didn't appreciate anything",
-              style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black,
-                  fontFamily: "Sf"),
-            ),
-          ],
-        ),
-      );
-    }
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Container(

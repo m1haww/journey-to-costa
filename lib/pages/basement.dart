@@ -27,8 +27,8 @@ Widget buildContainerPlus(
   );
 }
 
-Widget buildInput(
-    BuildContext context, String text, Color colortext, Color colorbackground,
+Widget buildInput(BuildContext context, String text, Color colortext,
+    Color colorbackground, Color colorhint,
     {required TextEditingController controller}) {
   final width = MediaQuery.of(context).size.width;
 
@@ -51,7 +51,7 @@ Widget buildInput(
           fontFamily: "Sf",
           fontWeight: FontWeight.w400,
           fontSize: 16,
-          color: colortext,
+          color: colorhint,
         ),
         contentPadding:
             const EdgeInsets.symmetric(horizontal: 16, vertical: 12),

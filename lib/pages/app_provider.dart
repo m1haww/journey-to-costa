@@ -343,4 +343,9 @@ class AppProvider extends ChangeNotifier {
     event.issaved = true;
     notifyListeners();
   }
+
+  void deleteEvent(GridEventsList event) {
+    eventsList.remove(event); // Removes the event from both sections
+    notifyListeners(); // Updates UI
+  }
 }
