@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:journey_to_costa/pages/app_provider.dart';
 import 'package:journey_to_costa/pages/navigation_page.dart';
+import 'package:journey_to_costa/pages/splash_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-        debugShowCheckedModeBanner: false, home: NavigationPage());
+        debugShowCheckedModeBanner: false, home: SplashScreen());
   }
 }
 
