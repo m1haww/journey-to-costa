@@ -8,7 +8,7 @@ import 'package:journey_to_costa/pages/sistem.dart';
 
 class AaaFoodDetailsPage extends StatefulWidget {
   final int initialIndex;
-  final List<Food> foodList; // Full food list
+  final List<Food> foodList;
   const AaaFoodDetailsPage(
       {super.key, required this.initialIndex, required this.foodList});
   @override
@@ -29,7 +29,7 @@ class _AaaFoodDetailsPageState extends State<AaaFoodDetailsPage> {
   void _onTapBottomDish(int index) {
     setState(() {
       currentIndex = index;
-      _pageController.jumpToPage(index); // Jump to the tapped food
+      _pageController.jumpToPage(index);
     });
   }
 
@@ -49,8 +49,7 @@ class _AaaFoodDetailsPageState extends State<AaaFoodDetailsPage> {
             });
           },
           itemBuilder: (context, index) {
-            Food food = widget
-                .foodList[index % widget.foodList.length]; // Infinite scroll
+            Food food = widget.foodList[index % widget.foodList.length];
             return SingleChildScrollView(
               child: Column(
                 children: [
@@ -138,7 +137,6 @@ class _AaaFoodDetailsPageState extends State<AaaFoodDetailsPage> {
                         buildheight(context, 0.02),
                         buildTextdetails(context, "Other dishes"),
                         buildheight(context, 0.02),
-                        // Display other dishes in containers
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -186,8 +184,7 @@ class _AaaFoodDetailsPageState extends State<AaaFoodDetailsPage> {
                                             ),
                                           ),
                                           Padding(
-                                            padding: const EdgeInsets.all(
-                                                10.0), // Adjusted padding to match
+                                            padding: const EdgeInsets.all(10.0),
                                             child: Column(
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,

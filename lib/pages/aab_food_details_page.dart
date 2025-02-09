@@ -63,24 +63,20 @@ class _AabFoodDetailsPageState extends State<AabFoodDetailsPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
-                    mainAxisAlignment:
-                        MainAxisAlignment.spaceBetween, // Ensures spacing
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Expanded(
-                        // Ensures the text wraps properly into two lines if needed
                         child: Text(
                           widget.restaurants.title,
                           style: const TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.bold,
                           ),
-                          maxLines: 2, // Limits text to 2 lines
-                          overflow: TextOverflow
-                              .ellipsis, // Adds "..." if text is too long
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                      const SizedBox(
-                          width: 10), // Adds space between text and image
+                      const SizedBox(width: 10),
                       Consumer<AppProvider>(
                         builder: (context, provider, child) {
                           bool isSelected = widget.restaurants.isfavorite;
@@ -92,8 +88,8 @@ class _AabFoodDetailsPageState extends State<AabFoodDetailsPage> {
                             },
                             child: Image.asset(
                               "images/vitea.png",
-                              width: 30, // Adjust image width as needed
-                              height: 30, // Adjust image height as needed
+                              width: 30,
+                              height: 30,
                               color: isSelected ? Colors.orange : null,
                               colorBlendMode:
                                   isSelected ? BlendMode.srcIn : null,
@@ -145,8 +141,7 @@ class _AabFoodDetailsPageState extends State<AabFoodDetailsPage> {
                   CupertinoPageRoute(
                     builder: (context) => AaaFoodDetailsPage(
                       foodList: widget.restaurants.menu,
-                      initialIndex: widget.restaurants.menu
-                          .indexOf(foodItem), // Pass the selected index
+                      initialIndex: widget.restaurants.menu.indexOf(foodItem),
                     ),
                   ));
             },

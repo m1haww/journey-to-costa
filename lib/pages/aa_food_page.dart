@@ -184,7 +184,7 @@ class _AaFoodPageState extends State<AaFoodPage> {
               borderRadius:
                   const BorderRadius.vertical(top: Radius.circular(12)),
               child: SizedBox(
-                height: 175, // Fixăm înălțimea Stack-ului
+                height: 175,
                 child: Stack(
                   children: [
                     Image.asset(
@@ -194,7 +194,7 @@ class _AaFoodPageState extends State<AaFoodPage> {
                       fit: BoxFit.cover,
                       errorBuilder: (context, error, stackTrace) {
                         return const SizedBox(
-                          height: 175, // Mențin aceeași înălțime
+                          height: 175,
                           child: Center(
                             child: Icon(Icons.image_not_supported,
                                 size: 50, color: Colors.grey),
@@ -267,7 +267,6 @@ class _AaFoodPageState extends State<AaFoodPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Restaurant Title
                 Text(
                   event.title,
                   style: const TextStyle(
@@ -277,7 +276,6 @@ class _AaFoodPageState extends State<AaFoodPage> {
                       color: Colors.black),
                 ),
                 const SizedBox(height: 8),
-                // Short Description
                 Text(
                   event.descriptionfull,
                   style: TextStyle(
@@ -289,17 +287,7 @@ class _AaFoodPageState extends State<AaFoodPage> {
                   overflow: TextOverflow.ellipsis,
                 ),
                 const SizedBox(height: 8),
-                // Restaurant Operating Hours
-                // Text(
-                //   event.time,
-                //   style: TextStyle(
-                //       fontFamily: "Sf",
-                //       fontWeight: FontWeight.w400,
-                //       fontSize: 12,
-                //       color: Colors.black.withOpacity(0.5)),
-                // ),
                 const SizedBox(height: 10),
-                // Menu Items (first three dishes)
               ],
             ),
           ),
